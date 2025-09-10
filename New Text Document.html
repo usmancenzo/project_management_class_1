@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>C2C Marketplace</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header>
+    <nav class="navbar">
+      <div class="logo">C2C Marketplace</div>
+      <ul class="nav-links">
+        <li><a href="#" data-section="login">Login</a></li>
+        <li><a href="#" data-section="signup">Signup</a></li>
+        <li><a href="#" data-section="support">Help & Support</a></li>
+        <li><a href="#" data-section="language">Language</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main id="main-content">
+    <!-- Dynamic content will appear here -->
+    <section id="login" class="section hidden">Login Form Coming Soon</section>
+    <section id="signup" class="section hidden">Signup Form Coming Soon</section>
+    <section id="support" class="section hidden">Support Info Coming Soon</section>
+    <section id="language" class="section hidden">Language Options Coming Soon</section>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background: #f8f9fa;
+}
+
+/* Navbar */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #333;
+  padding: 15px 30px;
+  color: white;
+}
+
+.logo {
+  font-weight: bold;
+  font-size: 1.2em;
+}
+
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 20px;
+}
+
+.nav-links li a {
+  color: white;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.nav-links li a:hover {
+  text-decoration: underline;
+}
+
+/* Content Sections */
+.section {
+  padding: 40px;
+  font-size: 1.2em;
+}
+
+/* Hide by default */
+.hidden {
+  display: none;
+}
+
+
+document.addEventListener("DOMContentLoaded", () => {
+  const links = document.querySelectorAll("a[data-section]");
+  const sections = document.querySelectorAll(".section");
+
+  links.forEach(link => {
+    link.addEventListener("click", (e) => {
+      e.preventDefault();
+
+      const targetId = link.getAttribute("data-section");
+
+      sections.forEach(section => {
+        section.classList.add("hidden");
+      });
+
+      const targetSection = document.getElementById(targetId);
+      if (targetSection) {
+        targetSection.classList.remove("hidden");
+      }
+    });
+  });
+});
